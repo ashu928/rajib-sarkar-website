@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M/S Rajib Sarkar - Professional Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-green: #2e7d32;
+            --dark-green: #1b5e20;
+            --light-green: #4caf50;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: var(--primary-green);
+            font-size: 2.5rem;
+        }
+        
+        .logo-text h1 {
+            color: var(--dark-green);
+            font-size: 1.8rem;
+            line-height: 1.2;
+        }
+        
+        .logo-text span {
+            color: var(--light-green);
+            font-weight: normal;
+            font-size: 1rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-green);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary-green);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            color: var(--dark-green);
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, transform 0.3s;
+            border: 2px solid var(--primary-green);
+        }
+        
+        .hero-btn:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-3px);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--light-green);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-header p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+        
+        /* Office Section */
+        .office-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .office-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid var(--light-green);
+        }
+        
+        .office-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .office-card-head {
+            padding: 25px;
+            background-color: var(--light-green);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .office-card-head h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .office-card-head p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .office-card-body {
+            padding: 25px;
+        }
+        
+        .office-card-body p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .office-icon {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+        
+        /* Services Section */
+        .services-section {
+            background-color: var(--light-bg);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            text-align: center;
+            border-left: 5px solid var(--light-green);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.4rem;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            color: var(--text-light);
+        }
+        
+        /* Clients Section */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .client-item {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 100px;
+            transition: all 0.3s;
+            border: 1px solid #eaeaea;
+        }
+        
+        .client-item:hover {
+            transform: scale(1.05);
+            border-color: var(--light-green);
+        }
+        
+        .client-item p {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-green);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--white);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--light-green);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #cccccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--white);
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-icon {
+            color: var(--light-green);
+            margin-top: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaaaaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                gap: 15px;
+                margin-top: 20px;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 25px;
+                right: 20px;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+            
+            .office-cards, .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-building logo-icon"></i>
+                <div class="logo-text">
+                    <h1>M/S Rajib Sarkar</h1>
+                    <span>Professional Services</span>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#offices">Office Details</a></li>
+                    <li><a href="#services">Work & Services</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Providing Professional Services Across Assam</h2>
+            <p>With offices in Tezpur, Guwahati, and Jorhat, M/S Rajib Sarkar delivers reliable manpower, housekeeping, and support services to prestigious clients throughout the region.</p>
+            <a href="#services" class="hero-btn">Our Services</a>
+        </div>
+    </section>
+
+    <!-- Office Details Section -->
+    <section id="offices">
+        <div class="container">
+            <div class="section-header">
+                <h2>Office Details</h2>
+                <p>Our strategic office locations across Assam ensure we can provide timely and efficient services to all our clients.</p>
+            </div>
+            
+            <div class="office-cards">
+                <!-- Head Office -->
+                <div class="office-card">
+                    <div class="office-card-head">
+                        <h3>Head Office</h3>
+                        <p>Tezpur</p>
+                    </div>
+                    <div class="office-card-body">
+                        <i class="fas fa-landmark office-icon"></i>
+                        <p>Our head office in Tezpur serves as the central hub for all our operations and strategic planning.</p>
+                        <div class="contact-info">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <p>Tezpur, Assam, India</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Branch Office 1 -->
+                <div class="office-card">
+                    <div class="office-card-head">
+                        <h3>Branch Office</h3>
+                        <p>Guwahati</p>
+                    </div>
+                    <div class="office-card-body">
+                        <i class="fas fa-building office-icon"></i>
+                        <p>Our Guwahati branch office allows us to serve clients in the largest city of Assam and surrounding areas.</p>
+                        <div class="contact-info">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <p>Guwahati, Assam, India</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Branch Office 2 -->
+                <div class="office-card">
+                    <div class="office-card-head">
+                        <h3>Branch Office</h3>
+                        <p>Jorhat</p>
+                    </div>
+                    <div class="office-card-body">
+                        <i class="fas fa-building office-icon"></i>
+                        <p>The Jorhat branch enables us to effectively serve clients in Upper Assam and neighboring regions.</p>
+                        <div class="contact-info">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <p>Jorhat, Assam, India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work & Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Work & Services</h2>
+                <p>We offer a comprehensive range of professional services to meet diverse organizational needs.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-users service-icon"></i>
+                    <h3>Man Power Service</h3>
+                    <p>Providing office assistants, office boys, and skilled manpower for various organizational requirements.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-broom service-icon"></i>
+                    <h3>House Keeping Service</h3>
+                    <p>Professional cleaning and maintenance services for offices, institutions, and residential complexes.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-trash-alt service-icon"></i>
+                    <h3>Garbage Picking Service</h3>
+                    <p>Efficient waste collection and disposal services to maintain clean and hygienic environments.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-utensils service-icon"></i>
+                    <h3>Food & Beverages (Events)</h3>
+                    <p>Catering services for events, meetings, and corporate functions with a focus on quality and hygiene.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-pen-fancy service-icon"></i>
+                    <h3>Stationery (Shop)</h3>
+                    <p>Supply of office stationery, supplies, and equipment through our dedicated stationery shop.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Esteemed Clients</h2>
+                <p>We are proud to serve a diverse range of prestigious organizations across various sectors.</p>
+            </div>
+            
+            <div class="clients-grid">
+                <div class="client-item">
+                    <p>Indian Railway</p>
+                </div>
+                <div class="client-item">
+                    <p>Tezpur University (TU)</p>
+                </div>
+                <div class="client-item">
+                    <p>Jorhat Agonia Union CST</p>
+                </div>
+                <div class="client-item">
+                    <p>NEST</p>
+                </div>
+                <div class="client-item">
+                    <p>NEERI WALM [RRL]</p>
+                </div>
+                <div class="client-item">
+                    <p>NIT Ammankul</p>
+                </div>
+                <div class="client-item">
+                    <p>Neri Along Water Development</p>
+                </div>
+                <div class="client-item">
+                    <p>ONGC</p>
+                </div>
+                <div class="client-item">
+                    <p>Rajiv Gandhi Wifi</p>
+                </div>
+                <div class="client-item">
+                    <p>Dalima Cement</p>
+                </div>
+                <div class="client-item">
+                    <p>Power Garuda</p>
+                </div>
+                <div class="client-item">
+                    <p>Assam Governor Office</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>M/S Rajib Sarkar</h3>
+                    <p>Providing professional manpower, housekeeping, and support services across Assam with commitment to quality and reliability.</p>
+                    <div class="contact-info">
+                        <i class="fas fa-phone contact-icon"></i>
+                        <p>+91 XXX XXX XXXX</p>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <p>info@rajibsarkar.com</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Our Offices</h3>
+                    <p><strong>Head Office:</strong> Tezpur, Assam</p>
+                    <p><strong>Branch Office:</strong> Guwahati, Assam</p>
+                    <p><strong>Branch Office:</strong> Jorhat, Assam</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <p>Man Power Service</p>
+                    <p>House Keeping Service</p>
+                    <p>Garbage Picking Service</p>
+                    <p>Food & Beverages (Events)</p>
+                    <p>Stationery (Shop)</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 M/S Rajib Sarkar. All Rights Reserved. | Proprietorship Firm</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('show')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                // Close mobile menu if open
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+                
+                // Scroll to section
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Update active link
+                document.querySelectorAll('nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // Update active link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
